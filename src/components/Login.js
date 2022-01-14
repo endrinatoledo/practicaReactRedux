@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Link} from 'react-router-dom';
 import {Col, Container, Row, Form, Button} from 'react-bootstrap'
 import {Provider} from 'react-redux'
 import store from '../store'
 import Navbar from './Navbar';
 import UserList from './UserList';
+import Register from './Auth/Register';
+
 
 
 
@@ -24,6 +27,15 @@ const Login = () => {
           );
     }
 
+    const redirectToRegistry = async (response) => {
+        ReactDOM.render(
+            <React.StrictMode>
+                <Register />       
+            </React.StrictMode>,
+            document.getElementById('root')
+          );
+    }
+
     return (
         <> 
             <Container>
@@ -33,17 +45,22 @@ const Login = () => {
                     <Form>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" placeholder="Ingresa email" />
+                            <Form.Control type="email" />
                         </Form.Group>
-                        {/* <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Contraseña</Form.Label>
-                            <Form.Control type="password" placeholder="Ingresa contraseña" />
+                            <Form.Control type="password" />
                         </Form.Group>    
-                                             */}
+                                            
                         <div className="d-grid gap-2">
                             <Button variant="success btn-block" type="button" onClick={validateLogin}>
-                            Aceptar
+                                Aceptar
+                            </Button>                           
+                            <Button variant="success btn-block" type="button" onClick={redirectToRegistry}>
+                                Registrate
                             </Button>
+                            
+                            
                         </div>
                         
                         </Form>
